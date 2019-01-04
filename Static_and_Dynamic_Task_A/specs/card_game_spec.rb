@@ -33,4 +33,18 @@ class TestCardGame < Minitest::Test
       CardGame.cards_total([@card1, @card2, @card3])
       )
   end
+
+  def test_cards_total__twocards
+    assert_equal(
+      "You have a total of 11",
+      CardGame.cards_total([@card2, @card3])
+      )
+  end
+
+  def test_cards_total__onecard
+    assert_equal(
+      "You have a total of 1",
+      CardGame.cards_total([@card1])
+      )
+  end
 end
