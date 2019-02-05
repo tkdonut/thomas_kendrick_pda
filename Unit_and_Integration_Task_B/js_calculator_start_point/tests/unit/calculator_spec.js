@@ -34,4 +34,37 @@ describe('calculator', function () {
     calculator.divide(7);
     assert.equal(calculator.runningTotal, 3);
   });
+
+  it('should concatenate multiple number button clicks', () => {
+    calculator.numberClick('1');
+    calculator.numberClick('2');
+    calculator.numberClick('3');
+    assert.equal(calculator.runningTotal, 123);
+  })
+
+ it('should chain operations', () => {
+    calculator.numberClick('1');
+    calculator.numberClick('0');
+    calculator.operatorClick('+');
+    calculator.numberClick('5');
+    calculator.operatorClick('-');
+    calculator.numberClick('2'); 
+    calculator.numberClick('0'); 
+    calculator.operatorClick('=');
+    assert.equal(calculator.runningTotal, -5);
+  })
+
+ it('should be able to clear without disrupting the calculation', () => {
+    calculator.numberClick('1');
+    calculator.numberClick('0');
+    calculator.operatorClick('+');
+    calculator.clearClick();
+    calculator.numberClick('5');
+    calculator.operatorClick('-');
+    calculator.numberClick('2'); 
+    calculator.numberClick('0'); 
+    calculator.operatorClick('=');
+    assert.equal(calculator.runningTotal, -5);
+  })
+
 });
